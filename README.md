@@ -1,2 +1,38 @@
-# 100-mechanisms
-Documenting 100 mechanical mechanisms I design and uild one by one.
+# 100 Mechanisms
+
+모터 없이 순수 기계식 매커니즘(링크, 캠, 기어, 래칫 등)을 하나씩 직접 설계하고 만들어보며 기록하는 개인 프로젝트입니다. 목표는 100개의 매커니즘을 완성하는 것이고, 이 저장소는 그 전체 과정을 모아두는 허브입니다.
+
+## Why
+
+오픈소스 로봇 프로젝트들을 살펴보다가, 결국 기계 매커니즘을 이해하는 감각은 직접 설계하고 손으로 만들어봐야 쌓인다는 생각이 들었습니다. 그래서 액추에이터나 제어 없이, 순수 기계 요소만으로 원하는 움직임을 구현하는 연습을 100번 반복하기로 했습니다.
+
+## 진행 현황 0 / 100
+
+001 Four bar linkage, 예정  
+002 Slider crank mechanism, 예정  
+003 Cam and follower, 예정  
+004 Geneva drive, 예정  
+005 Ratchet and pawl, 예정  
+006 Rack and pinion, 예정  
+007 Scotch yoke, 예정  
+008 Bevel gear pair, 예정  
+009 Worm gear, 예정  
+010 Pantograph, 예정  
+011부터 100까지는 진행하면서 하나씩 채워나갈 예정입니다
+
+## 기록 방식
+
+각 매커니즘은 mechanisms 폴더 안에 번호와 이름으로 된 하위 폴더를 만들어 기록합니다. 예를 들어 mechanisms 폴더 안에 001 four bar linkage 라는 폴더를 만들고, 그 안에 README와 사진, 필요하면 CAD 파일을 함께 둡니다.
+
+각 항목의 README에는 아래 내용을 같은 순서로 정리합니다.
+
+이름 및 한 줄 요약  
+구현하려는 움직임과 원리 설명  
+참고한 레퍼런스  
+설계 및 제작 과정에서의 시행착오  
+결과물 사진 및 영상  
+배운 점과 다음 매커니즘에 적용하고 싶은 아이디어
+
+## Updates
+
+2026년 8월 16일, 프로젝트 시작. 저장소를 만들고 100개 목록의 초안을 잡았습니다.
