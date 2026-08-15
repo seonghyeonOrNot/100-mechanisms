@@ -9,15 +9,15 @@
 ## 진행 현황 0 / 100
 
 [001 Four bar linkage, 진행중](mechanisms/001-four-bar-linkage)  
-002 Slider crank mechanism, 예정  
-003 Cam and follower, 예정  
-004 Geneva drive, 예정  
-005 Ratchet and pawl, 예정  
-006 Rack and pinion, 예정  
-007 Scotch yoke, 예정  
-008 Bevel gear pair, 예정  
-009 Worm gear, 예정  
-010 Pantograph, 예정  
+[002 Slider crank mechanism, 진행중](mechanisms/002-slider-crank)  
+[003 Cam mechanism, 진행중](mechanisms/003-cam-mechanism)  
+[004 Ratchet mechanism, 진행중](mechanisms/004-ratchet-mechanism)  
+[005 Geneva mechanism, 진행중](mechanisms/005-geneva-mechanism)  
+[006 Scotch yoke, 진행중](mechanisms/006-scotch-yoke)  
+[007 Pantograph, 진행중](mechanisms/007-pantograph)  
+[008 Worm gear, 진행중](mechanisms/008-worm-gear)  
+[009 Rack and pinion, 진행중](mechanisms/009-rack-and-pinion)  
+[010 Universal joint, 진행중](mechanisms/010-universal-joint)  
 011부터 100까지는 진행하면서 하나씩 채워나갈 예정입니다
 
 ## 기록 방식
@@ -36,4 +36,5 @@
 ## Updates
 
 2026년 8월 16일, 프로젝트 시작. 저장소를 만들고 100개 목록의 초안을 잡았습니다.  
-2026년 8월 16일, 001 Four bar linkage 항목의 README를 작성했습니다.
+2026년 8월 16일, 001 Four bar linkage 항목의 README를 작성했습니다.  
+2026년 8월 16일, 002부터 010까지 아홉 개 항목의 README를 작성하고 진행 현황 링크를 업데이트했습니다.
