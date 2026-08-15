@@ -8,7 +8,7 @@
 
 ## 진행 현황 0 / 100
 
-001 Four bar linkage, 예정  
+[001 Four bar linkage, 진행중](mechanisms/001-four-bar-linkage)  
 002 Slider crank mechanism, 예정  
 003 Cam and follower, 예정  
 004 Geneva drive, 예정  
@@ -35,4 +35,5 @@
 
 ## Updates
 
-2026년 8월 16일, 프로젝트 시작. 저장소를 만들고 100개 목록의 초안을 잡았습니다.
+2026년 8월 16일, 프로젝트 시작. 저장소를 만들고 100개 목록의 초안을 잡았습니다.  
+2026년 8월 16일, 001 Four bar linkage 항목의 README를 작성했습니다.
