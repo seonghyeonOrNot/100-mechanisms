@@ -1,327 +1,636 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>100 Mechanisms</title>
 
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
 <style>
-  * {
-    box-sizing: border-box;
-  }
 
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    margin: 0;
-    padding: 0;
-    color: #24292f;
-    line-height: 1.6;
-    background: #ffffff;
-  }
+/* ========================================
+   Base
+======================================== */
 
-  a {
-    color: #0969da;
-    text-decoration: none;
-  }
+* {
+  box-sizing: border-box;
+}
 
-  a:hover {
-    text-decoration: underline;
-  }
+html {
+  scroll-behavior: smooth;
+}
 
-  .wrap {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 24px;
-  }
+body {
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    sans-serif;
 
-  .hero {
-    padding: 56px 0 40px;
-    border-bottom: 1px solid #eaeef2;
-    margin-bottom: 40px;
+  margin: 0;
+  padding: 0;
+
+  color: #24292f;
+  line-height: 1.6;
+
+  background: #ffffff;
+}
+
+a {
+  color: #0969da;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.wrap {
+  position: relative;
+  z-index: 2;
+
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+
+/* ========================================
+   Hero
+======================================== */
+
+.hero {
+  background: #ffffff;
+
+  padding: 56px 0 40px;
+
+  border-bottom: 1px solid #eaeef2;
+}
+
+.hero-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 48px;
+
+  flex-wrap: wrap;
+}
+
+.hero-text {
+  flex: 1 1 380px;
+  min-width: 280px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  font-weight: 700;
+  font-size: 20px;
+
+  margin-bottom: 44px;
+
+  color: #0d1117;
+}
+
+.logo-icon {
+  font-size: 22px;
+}
+
+.headline {
+  font-size: 52px;
+  font-weight: 800;
+
+  line-height: 1.15;
+
+  margin: 0;
+
+  color: #0d1117;
+}
+
+.headline .accent {
+  color: #0969da;
+}
+
+.hero-divider {
+  width: 40px;
+  height: 3px;
+
+  background: #24292f;
+
+  border: none;
+
+  margin: 24px 0;
+}
+
+.hero-desc {
+  font-size: 16px;
+
+  color: #57606a;
+
+  margin: 0 0 28px;
+}
+
+
+/* ========================================
+   CTA
+======================================== */
+
+.cta {
+  display: flex;
+
+  gap: 12px;
+
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-block;
+
+  padding: 12px 22px;
+
+  border-radius: 8px;
+
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.btn-primary {
+  background: #0d1117;
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background: #24292f;
+
+  text-decoration: none;
+}
+
+.btn-outline {
+  border: 1px solid #d0d7de;
+
+  color: #0d1117;
+
+  background: #ffffff;
+}
+
+.btn-outline:hover {
+  background: #f6f8fa;
+
+  text-decoration: none;
+}
+
+
+/* ========================================
+   Hero Image
+======================================== */
+
+.hero-image {
+  flex: 1 1 320px;
+
+  min-width: 260px;
+
+  text-align: center;
+}
+
+.hero-image img {
+  max-width: 130%;
+
+  height: auto;
+}
+
+
+/* ========================================
+   Motion Library Background
+======================================== */
+
+.library-section {
+  position: relative;
+
+  min-height: 500px;
+
+  padding: 56px 0 80px;
+
+  overflow: hidden;
+
+  background-color: #f6f8fa;
+
+  border-top: 1px solid #eaeef2;
+
+
+  /*
+     아주 미세한 점묘 패턴
+  */
+
+  background-image:
+    radial-gradient(
+      circle,
+      rgba(13, 17, 23, 0.045) 0.7px,
+      transparent 0.8px
+    );
+
+  background-size:
+    18px 18px;
+}
+
+
+/*
+   기어 패턴 Overlay
+
+   별도 SVG 파일 필요 없음.
+   아래 SVG가 CSS 내부에 포함되어 있음.
+*/
+
+.library-section::before {
+
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  opacity: 0.038;
+
+  background-image:
+
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300' viewBox='0 0 300 300'%3E%3Cg fill='none' stroke='%230d1117' stroke-width='2'%3E%3Ccircle cx='150' cy='150' r='75'/%3E%3Ccircle cx='150' cy='150' r='30'/%3E%3Cpath d='M150 50v35M150 215v35M50 150h35M215 150h35M79 79l25 25M196 196l25 25M79 221l25-25M196 104l25-25'/%3E%3Cpath d='M150 75L165 45L180 80M225 150L255 165L220 180M150 225L135 255L120 220M75 150L45 135L80 120'/%3E%3C/g%3E%3C/svg%3E"),
+
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'%3E%3Cg fill='none' stroke='%230d1117' stroke-width='2'%3E%3Ccircle cx='110' cy='110' r='55'/%3E%3Ccircle cx='110' cy='110' r='22'/%3E%3Cpath d='M110 36v30M110 154v30M36 110h30M154 110h30M58 58l22 22M140 140l22 22M58 162l22-22M140 80l22-22'/%3E%3C/g%3E%3C/svg%3E");
+
+  background-repeat:
+    repeat,
+    repeat;
+
+  background-size:
+    520px 520px,
+    420px 420px;
+
+  background-position:
+    -120px 20px,
+    260px 180px;
+}
+
+
+/*
+   가장자리의 조금 더 큰 기어
+*/
+
+.library-section::after {
+
+  content: "";
+
+  position: absolute;
+
+  right: -120px;
+  bottom: -100px;
+
+  width: 360px;
+  height: 360px;
+
+  opacity: 0.035;
+
+  pointer-events: none;
+
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+
+  background-image:
+
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Cg fill='none' stroke='%230d1117' stroke-width='2'%3E%3Ccircle cx='150' cy='150' r='95'/%3E%3Ccircle cx='150' cy='150' r='38'/%3E%3Cpath d='M150 28v37M150 235v37M28 150h37M235 150h37M64 64l27 27M209 209l27 27M64 236l27-27M209 91l27-27'/%3E%3Cpath d='M150 55L165 20L180 58M245 150L280 165L242 180M150 245L135 280L120 242M55 150L20 135L58 120'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+
+/* ========================================
+   Main
+======================================== */
+
+main.wrap {
+  padding-bottom: 60px;
+}
+
+.section-title {
+  font-size: 26px;
+  font-weight: 750;
+
+  margin: 0 0 24px;
+
+  color: #0d1117;
+}
+
+
+/* ========================================
+   Mechanism List
+======================================== */
+
+.item {
+
+  padding: 18px 0;
+
+  border-bottom: 1px solid rgba(208, 215, 222, 0.9);
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 24px;
+}
+
+.item-link {
+  font-size: 16px;
+
+  font-weight: 600;
+}
+
+.item-date {
+
+  flex-shrink: 0;
+
+  font-size: 13px;
+
+  color: #8c959f;
+
+  white-space: nowrap;
+}
+
+
+/* ========================================
+   Detail Navigation
+======================================== */
+
+.detail-nav {
+
+  display: grid;
+
+  grid-template-columns:
+    1fr auto 1fr;
+
+  align-items: center;
+
+  gap: 24px;
+
+  margin-bottom: 36px;
+
+  padding-bottom: 16px;
+
+  border-bottom:
+    1px solid rgba(208, 215, 222, 0.7);
+}
+
+.detail-nav-left {
+  justify-self: start;
+}
+
+.detail-nav-position {
+
+  justify-self: center;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  color: #57606a;
+
+  white-space: nowrap;
+}
+
+.detail-nav-actions {
+
+  justify-self: end;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 22px;
+}
+
+.detail-nav a {
+  font-size: 15px;
+}
+
+.detail-nav .disabled {
+
+  color: #afb8c1;
+
+  pointer-events: none;
+
+  cursor: default;
+
+  font-size: 15px;
+}
+
+
+/* ========================================
+   Markdown Content
+======================================== */
+
+#content {
+
+  background: rgba(255, 255, 255, 0.72);
+
+  border-radius: 12px;
+
+  padding: 12px 24px 36px;
+}
+
+#content h1 {
+
+  border-bottom:
+    1px solid #d0d7de;
+
+  padding-bottom: 10px;
+}
+
+#content img {
+
+  max-width: 100%;
+
+  height: auto;
+
+  border-radius: 8px;
+}
+
+pre {
+
+  background: #f6f8fa;
+
+  padding: 16px;
+
+  overflow: auto;
+
+  border-radius: 6px;
+}
+
+code {
+
+  background: #f6f8fa;
+
+  padding: 2px 4px;
+
+  border-radius: 4px;
+}
+
+
+/* ========================================
+   Responsive
+======================================== */
+
+@media (max-width: 700px) {
+
+  .headline {
+    font-size: 34px;
   }
 
   .hero-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 48px;
-    flex-wrap: wrap;
-  }
-
-  .hero-text {
-    flex: 1 1 380px;
-    min-width: 280px;
-  }
-
-  .logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-weight: 700;
-    font-size: 20px;
-    margin-bottom: 44px;
-    color: #0d1117;
-  }
-
-  .logo-icon {
-    font-size: 22px;
-  }
-
-  .headline {
-    font-size: 52px;
-    font-weight: 800;
-    line-height: 1.15;
-    margin: 0;
-    color: #0d1117;
-  }
-
-  .headline .accent {
-    color: #0969da;
-  }
-
-  .hero-divider {
-    width: 40px;
-    height: 3px;
-    background: #24292f;
-    border: none;
-    margin: 24px 0;
-  }
-
-  .hero-desc {
-    font-size: 16px;
-    color: #57606a;
-    margin: 0 0 28px;
-  }
-
-  .cta {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-  }
-
-  .btn {
-    display: inline-block;
-    padding: 12px 22px;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 15px;
-  }
-
-  .btn-primary {
-    background: #0d1117;
-    color: #ffffff;
-  }
-
-  .btn-primary:hover {
-    background: #24292f;
-    text-decoration: none;
-  }
-
-  .btn-outline {
-    border: 1px solid #d0d7de;
-    color: #0d1117;
-  }
-
-  .btn-outline:hover {
-    background: #f6f8fa;
-    text-decoration: none;
-  }
-
-  .hero-image {
-    flex: 1 1 320px;
-    min-width: 260px;
-    text-align: center;
+    flex-direction: column;
   }
 
   .hero-image img {
-    max-width: 130%;
-    height: auto;
+    max-width: 100%;
   }
 
-  main.wrap {
-    padding-bottom: 60px;
+
+  .library-section {
+
+    padding:
+      42px 0 64px;
+
+    background-size:
+      16px 16px;
   }
 
-  .section-title {
-    font-size: 22px;
-    font-weight: 700;
-    margin: 0 0 16px;
-    color: #0d1117;
-  }
 
-  /* 목록 */
   .item {
-    padding: 16px 0;
-    border-bottom: 1px solid #d0d7de;
+    align-items: flex-start;
 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 24px;
-  }
-
-  .item-link {
-    font-size: 16px;
-    font-weight: 500;
+    gap: 12px;
   }
 
   .item-date {
-    flex-shrink: 0;
-    font-size: 13px;
-    color: #8c959f;
-    white-space: nowrap;
+    font-size: 12px;
   }
 
-  /* 상세 상단 네비게이션 */
+
   .detail-nav {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    align-items: center;
-    gap: 24px;
-    margin-bottom: 36px;
+
+    grid-template-columns:
+      1fr auto;
+
+    grid-template-areas:
+
+      "back position"
+
+      "actions actions";
+
+    row-gap: 16px;
   }
 
   .detail-nav-left {
-    justify-self: start;
+    grid-area: back;
   }
 
   .detail-nav-position {
-    justify-self: center;
-    font-size: 14px;
-    font-weight: 600;
-    color: #57606a;
-    white-space: nowrap;
+
+    grid-area: position;
+
+    justify-self: end;
   }
 
   .detail-nav-actions {
+
+    grid-area: actions;
+
     justify-self: end;
-    display: flex;
-    align-items: center;
-    gap: 20px;
   }
 
-  .detail-nav a {
-    font-size: 15px;
+
+  #content {
+    padding:
+      8px 12px 28px;
   }
 
-  .detail-nav .disabled {
-    color: #afb8c1;
-    pointer-events: none;
-    cursor: default;
-  }
+}
 
-  #content h1 {
-    border-bottom: 1px solid #d0d7de;
-    padding-bottom: 10px;
-  }
-
-  #content img {
-    max-width: 100%;
-    height: auto;
-  }
-
-  pre {
-    background: #f6f8fa;
-    padding: 16px;
-    overflow: auto;
-    border-radius: 6px;
-  }
-
-  code {
-    background: #f6f8fa;
-    padding: 2px 4px;
-    border-radius: 4px;
-  }
-
-  @media (max-width: 700px) {
-
-    .headline {
-      font-size: 34px;
-    }
-
-    .hero-inner {
-      flex-direction: column;
-    }
-
-    .hero-image img {
-      max-width: 100%;
-    }
-
-    .item {
-      align-items: flex-start;
-      gap: 12px;
-    }
-
-    .item-date {
-      font-size: 12px;
-    }
-
-    .detail-nav {
-      grid-template-columns: 1fr auto;
-      grid-template-areas:
-        "back position"
-        "actions actions";
-      row-gap: 16px;
-    }
-
-    .detail-nav-left {
-      grid-area: back;
-    }
-
-    .detail-nav-position {
-      grid-area: position;
-      justify-self: end;
-    }
-
-    .detail-nav-actions {
-      grid-area: actions;
-      justify-self: end;
-    }
-
-  }
 </style>
+
 </head>
+
 
 <body>
 
+
+<!-- =====================================
+     HERO
+===================================== -->
+
 <section class="hero">
+
   <div class="wrap hero-inner">
+
 
     <div class="hero-text">
 
+
       <div class="logo">
-        <span class="logo-icon">⚙️</span>
+
+        <span class="logo-icon">
+          ⚙️
+        </span>
+
         100 Mechanisms
+
       </div>
 
+
       <h1 class="headline">
+
         Understand Motion.<br>
+
         Design Systems.<br>
-        <span class="accent">Build Robots.</span>
+
+        <span class="accent">
+          Build Robots.
+        </span>
+
       </h1>
+
 
       <hr class="hero-divider">
 
+
       <p class="hero-desc">
+
         기계 메커니즘을 분석하고 설계하며 기록합니다.
-        움직임의 원리를 이해하고 실제 로봇 시스템으로 연결하는 오픈 프로젝트입니다.
+        움직임의 원리를 이해하고 실제 로봇 시스템으로 연결하는
+        오픈 프로젝트입니다.
+
       </p>
+
 
       <div class="cta">
 
+
         <a
           href="#/"
+          id="explore-button"
           class="btn btn-primary"
-          onclick="
-            var t = document.getElementById('list-section');
-            if (t) {
-              t.scrollIntoView({ behavior: 'smooth' });
-            }
-          "
         >
-          Explore Motion Library &darr;
+
+          Explore Motion Library ↓
+
         </a>
+
 
         <a
           href="https://github.com/seonghyeonOrNot/100-mechanisms"
@@ -329,423 +638,944 @@
           rel="noopener"
           class="btn btn-outline"
         >
+
           View on GitHub
+
         </a>
 
+
       </div>
+
     </div>
 
+
     <div class="hero-image">
+
       <img
         src="hamster-hero3.png"
         alt="100 Mechanisms mascot"
       >
+
     </div>
 
+
   </div>
+
 </section>
 
 
-<main class="wrap">
-  <div id="app">
-    Loading...
-  </div>
-</main>
+
+<!-- =====================================
+     MOTION LIBRARY
+===================================== -->
+
+<section
+  class="library-section"
+  id="library-section"
+>
+
+  <main class="wrap">
+
+    <div id="app">
+
+      Loading...
+
+    </div>
+
+  </main>
+
+</section>
+
 
 
 <script>
 
-const OWNER = 'seonghyeonOrNot';
-const REPO = '100-mechanisms';
-const BRANCH = 'main';
+
+/* ========================================
+   GitHub Config
+======================================== */
+
+const OWNER =
+  'seonghyeonOrNot';
+
+const REPO =
+  '100-mechanisms';
+
+const BRANCH =
+  'main';
 
 
-/* =========================
-   메커니즘 폴더 목록
-========================= */
+
+/* ========================================
+   Mechanism Folder
+======================================== */
 
 async function fetchMechanisms() {
 
   const url =
+
     'https://api.github.com/repos/' +
+
     OWNER + '/' +
+
     REPO +
+
     '/contents/mechanisms';
 
-  const res = await fetch(url);
+
+  const res =
+    await fetch(url);
+
 
   if (!res.ok) {
+
     return [];
+
   }
 
-  const data = await res.json();
+
+  const data =
+    await res.json();
+
 
   return data
+
     .filter(function(d) {
+
       return d.type === 'dir';
+
     })
+
     .sort(function(a, b) {
-      return a.name.localeCompare(b.name);
+
+      return a.name.localeCompare(
+        b.name
+      );
+
     });
 
 }
 
 
-/* =========================
-   README 가져오기
-========================= */
 
-async function fetchReadme(dirName) {
+/* ========================================
+   README
+======================================== */
+
+async function fetchReadme(
+  dirName
+) {
 
   const url =
+
     'https://raw.githubusercontent.com/' +
+
     OWNER + '/' +
+
     REPO + '/' +
+
     BRANCH +
+
     '/mechanisms/' +
+
     dirName +
+
     '/README.md';
 
-  const res = await fetch(url);
+
+  const res =
+    await fetch(url);
+
 
   if (!res.ok) {
+
     return '# Not found';
+
   }
 
+
   return await res.text();
+
 }
 
 
-/* =========================
-   최신 수정일
-========================= */
 
-async function fetchLastUpdated(dirName) {
+/* ========================================
+   Last Updated
+======================================== */
+
+async function fetchLastUpdated(
+  dirName
+) {
 
   const path =
-    'mechanisms/' + dirName;
+
+    'mechanisms/' +
+    dirName;
+
 
   const url =
+
     'https://api.github.com/repos/' +
+
     OWNER + '/' +
+
     REPO +
+
     '/commits?path=' +
+
     encodeURIComponent(path) +
+
     '&sha=' +
+
     encodeURIComponent(BRANCH) +
+
     '&per_page=1';
+
 
   try {
 
-    const res = await fetch(url);
+
+    const res =
+      await fetch(url);
+
 
     if (!res.ok) {
+
       return null;
+
     }
 
-    const commits = await res.json();
+
+    const commits =
+      await res.json();
+
 
     if (!commits.length) {
+
       return null;
+
     }
 
-    return commits[0].commit.committer.date;
+
+    return commits[0]
+      .commit
+      .committer
+      .date;
+
 
   } catch (error) {
+
 
     console.error(
       'Last updated fetch error:',
       error
     );
 
+
     return null;
+
   }
 
 }
 
 
-/* =========================
-   날짜 포맷
-========================= */
 
-function formatDate(dateString) {
+/* ========================================
+   Date Format
+======================================== */
+
+function formatDate(
+  dateString
+) {
+
 
   if (!dateString) {
+
     return '-';
+
   }
 
-  const date = new Date(dateString);
+
+  const date =
+    new Date(dateString);
+
 
   const formatted =
+
     new Intl.DateTimeFormat(
+
       'en-CA',
+
       {
-        timeZone: 'Asia/Seoul',
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit'
+
+        timeZone:
+          'Asia/Seoul',
+
+        year:
+          'numeric',
+
+        month:
+          '2-digit',
+
+        day:
+          '2-digit'
+
       }
+
     ).format(date);
 
-  return formatted.replaceAll('-', '.');
+
+  return formatted.replaceAll(
+    '-',
+    '.'
+  );
 
 }
 
 
-/* =========================
-   폴더명 → 제목
-========================= */
 
-function formatTitle(dirName) {
+/* ========================================
+   Folder → Title
+======================================== */
+
+function formatTitle(
+  dirName
+) {
+
 
   const parts =
     dirName.split('-');
 
+
   const num =
     parts[0];
 
+
   const words =
+
     parts
       .slice(1)
       .join(' ');
 
+
   const title =
+
     words.replace(
+
       /\b\w/g,
+
       function(c) {
+
         return c.toUpperCase();
+
       }
+
     );
+
 
   return num + '. ' + title;
 
 }
 
 
-/* =========================
-   HOME
-========================= */
 
-async function renderHome() {
+/* ========================================
+   HOME
+======================================== */
+
+async function renderHome(
+  scrollToLibrary = false
+) {
+
 
   const app =
-    document.getElementById('app');
+    document.getElementById(
+      'app'
+    );
+
 
   app.innerHTML =
-    '<h2 class="section-title" id="list-section">' +
-      'Motion Library' +
+
+    '<h2 ' +
+
+    'class="section-title" ' +
+
+    'id="list-section">' +
+
+    'Motion Library' +
+
     '</h2>' +
+
     '<div id="list">' +
-      '불러오는 중...' +
+
+    '불러오는 중...' +
+
     '</div>';
+
 
   const dirs =
     await fetchMechanisms();
 
+
   const list =
-    document.getElementById('list');
+    document.getElementById(
+      'list'
+    );
+
 
   if (dirs.length === 0) {
 
+
     list.innerHTML =
-      '<p>아직 등록된 항목이 없습니다.</p>';
+
+      '<p>' +
+
+      '아직 등록된 항목이 없습니다.' +
+
+      '</p>';
+
 
     return;
+
   }
 
+
   const items =
+
     await Promise.all(
 
+
       dirs.map(
+
+
         async function(d) {
 
+
           const updatedAt =
-            await fetchLastUpdated(d.name);
+
+            await fetchLastUpdated(
+              d.name
+            );
+
 
           return (
+
             '<div class="item">' +
 
+
               '<a ' +
+
                 'class="item-link" ' +
+
                 'href="#/mechanisms/' +
+
                 d.name +
+
               '">' +
 
-                formatTitle(d.name) +
+
+                formatTitle(
+                  d.name
+                ) +
+
 
               '</a>' +
 
+
               '<span class="item-date">' +
+
                 'Updated ' +
-                formatDate(updatedAt) +
+
+                formatDate(
+                  updatedAt
+                ) +
+
               '</span>' +
 
+
             '</div>'
+
           );
 
         }
+
       )
 
     );
 
+
   list.innerHTML =
     items.join('');
+
+
+  /*
+     목록으로 돌아온 경우
+     Hero가 아니라 Library 시작점으로 이동
+  */
+
+  if (scrollToLibrary) {
+
+
+    requestAnimationFrame(
+
+      function() {
+
+
+        document
+
+          .getElementById(
+            'library-section'
+          )
+
+          .scrollIntoView({
+
+            behavior:
+              'instant',
+
+            block:
+              'start'
+
+          });
+
+      }
+
+    );
+
+  }
 
 }
 
 
-/* =========================
-   DETAIL
-========================= */
 
-async function renderDetail(dirName) {
+/* ========================================
+   DETAIL
+======================================== */
+
+async function renderDetail(
+  dirName
+) {
+
+
+  /*
+     상세 → 상세 이동 시
+
+     현재 Library 위치를 저장해서
+     Hero까지 올라가지 않도록 함
+  */
+
+  const library =
+    document.getElementById(
+      'library-section'
+    );
+
+
+  const beforeTop =
+
+    library
+      ? library.getBoundingClientRect().top
+      : null;
+
 
   const app =
-    document.getElementById('app');
+    document.getElementById(
+      'app'
+    );
+
 
   app.innerHTML =
     '<div>불러오는 중...</div>';
 
+
   const dirs =
     await fetchMechanisms();
 
+
   const currentIndex =
-    dirs.findIndex(function(d) {
-      return d.name === dirName;
-    });
+
+    dirs.findIndex(
+
+      function(d) {
+
+        return d.name === dirName;
+
+      }
+
+    );
+
 
   if (currentIndex === -1) {
 
+
     app.innerHTML =
-      '<p>해당 메커니즘을 찾을 수 없습니다.</p>';
+
+      '<p>' +
+
+      '해당 메커니즘을 찾을 수 없습니다.' +
+
+      '</p>';
+
 
     return;
+
   }
 
+
   const prev =
+
     currentIndex > 0
+
       ? dirs[currentIndex - 1]
+
       : null;
+
 
   const next =
+
     currentIndex < dirs.length - 1
+
       ? dirs[currentIndex + 1]
+
       : null;
 
 
-  /*
-    현재 위치
-
-    현재 등록 개수 기준이 아니라
-    프로젝트 목표인 100을 기준으로 표시
-  */
 
   const currentNumber =
-    String(currentIndex + 1).padStart(3, '0');
+
+    String(
+      currentIndex + 1
+    )
+
+    .padStart(
+      3,
+      '0'
+    );
+
 
   const positionText =
-    currentNumber + ' / 100';
+
+    currentNumber +
+    ' / 100';
+
 
 
   const prevHtml =
+
     prev
+
       ? (
+
           '<a href="#/mechanisms/' +
+
           prev.name +
-          '">&larr; 이전</a>'
-        )
-      : (
-          '<span class="disabled">' +
+
+          '">' +
+
           '&larr; 이전' +
+
+          '</a>'
+
+        )
+
+      : (
+
+          '<span class="disabled">' +
+
+          '&larr; 이전' +
+
           '</span>'
+
         );
+
 
 
   const nextHtml =
+
     next
+
       ? (
+
           '<a href="#/mechanisms/' +
+
           next.name +
-          '">다음 &rarr;</a>'
-        )
-      : (
-          '<span class="disabled">' +
+
+          '">' +
+
           '다음 &rarr;' +
+
+          '</a>'
+
+        )
+
+      : (
+
+          '<span class="disabled">' +
+
+          '다음 &rarr;' +
+
           '</span>'
+
         );
+
 
 
   app.innerHTML =
 
+
     '<div class="detail-nav">' +
 
+
       '<div class="detail-nav-left">' +
-        '<a href="#/">&larr; 목록으로</a>' +
+
+        '<a href="#/" ' +
+
+        'data-back-to-library="true">' +
+
+        '&larr; 목록으로' +
+
+        '</a>' +
+
       '</div>' +
+
 
       '<div class="detail-nav-position">' +
+
         positionText +
+
       '</div>' +
 
+
       '<div class="detail-nav-actions">' +
+
         prevHtml +
+
         nextHtml +
+
       '</div>' +
+
 
     '</div>' +
 
+
     '<div id="content">' +
+
       '불러오는 중...' +
+
     '</div>';
 
 
+
   const md =
-    await fetchReadme(dirName);
+
+    await fetchReadme(
+      dirName
+    );
 
 
   document
-    .getElementById('content')
+
+    .getElementById(
+      'content'
+    )
+
     .innerHTML =
+
       marked.parse(md);
 
 
 
+  /*
+     이전 / 다음 클릭 시
+
+     Hero 최상단으로 이동하지 않고
+     Motion Library 영역을 유지
+  */
+
+  if (beforeTop !== null) {
+
+
+    requestAnimationFrame(
+
+      function() {
+
+
+        const newTop =
+
+          library
+            .getBoundingClientRect()
+            .top;
+
+
+        window.scrollBy({
+
+          top:
+            newTop - beforeTop,
+
+          behavior:
+            'instant'
+
+        });
+
+      }
+
+    );
+
+  }
+
 }
 
 
-/* =========================
-   ROUTER
-========================= */
+
+/* ========================================
+   Router
+======================================== */
+
+let backToLibrary =
+  false;
+
 
 function router() {
+
 
   const hash =
     window.location.hash;
 
+
   const match =
+
     hash.match(
+
       /^#\/mechanisms\/(.+)$/
+
     );
 
 
   if (match) {
 
+
     renderDetail(
-      decodeURIComponent(match[1])
+
+      decodeURIComponent(
+        match[1]
+      )
+
     );
+
 
   } else {
 
-    renderHome();
+
+    renderHome(
+      backToLibrary
+    );
+
+
+    backToLibrary =
+      false;
 
   }
 
 }
 
 
-/* =========================
-   EVENTS
-========================= */
+
+/* ========================================
+   Motion Library Button
+======================================== */
+
+document
+
+  .getElementById(
+    'explore-button'
+  )
+
+  .addEventListener(
+
+    'click',
+
+    function(event) {
+
+
+      event.preventDefault();
+
+
+      if (
+        window.location.hash !== '#/'
+      ) {
+
+
+        backToLibrary =
+          true;
+
+
+        window.location.hash =
+          '#/';
+
+
+      } else {
+
+
+        document
+
+          .getElementById(
+            'library-section'
+          )
+
+          .scrollIntoView({
+
+            behavior:
+              'smooth',
+
+            block:
+              'start'
+
+          });
+
+      }
+
+    }
+
+  );
+
+
+
+/* ========================================
+   Back → Library
+======================================== */
+
+document.addEventListener(
+
+  'click',
+
+  function(event) {
+
+
+    const backLink =
+
+      event.target.closest(
+        '[data-back-to-library]'
+      );
+
+
+    if (!backLink) {
+
+      return;
+
+    }
+
+
+    backToLibrary =
+      true;
+
+  }
+
+);
+
+
+
+/* ========================================
+   Events
+======================================== */
 
 window.addEventListener(
   'hashchange',
@@ -754,15 +1584,21 @@ window.addEventListener(
 
 
 window.addEventListener(
+
   'DOMContentLoaded',
+
   function() {
 
     router();
 
   }
+
 );
+
 
 </script>
 
+
 </body>
+
 </html>
