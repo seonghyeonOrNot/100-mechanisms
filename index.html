@@ -172,20 +172,6 @@ a:hover {
   text-decoration: none;
 }
 
-.btn-outline {
-  border: 1px solid #d0d7de;
-
-  color: #0d1117;
-
-  background: #ffffff;
-}
-
-.btn-outline:hover {
-  background: #f6f8fa;
-
-  text-decoration: none;
-}
-
 
 /* ========================================
    Hero Image
@@ -223,10 +209,7 @@ a:hover {
 
   border-top: 1px solid #eaeef2;
 
-
-  /*
-     아주 미세한 점묘 패턴
-  */
+  /* 아주 미세한 점묘 패턴 */
 
   background-image:
     radial-gradient(
@@ -235,24 +218,8 @@ a:hover {
       transparent 0.8px
     );
 
-  background-size:
-    18px 18px;
+  background-size: 18px 18px;
 }
-
-
-/*
-   기어 패턴 Overlay
-
-   별도 SVG 파일 필요 없음.
-   아래 SVG가 CSS 내부에 포함되어 있음.
-*/
-
-
-
-/*
-   가장자리의 조금 더 큰 기어
-*/
-
 
 
 /* ========================================
@@ -278,7 +245,6 @@ main.wrap {
 ======================================== */
 
 .item {
-
   padding: 18px 0;
 
   border-bottom: 1px solid rgba(208, 215, 222, 0.9);
@@ -299,7 +265,6 @@ main.wrap {
 }
 
 .item-date {
-
   flex-shrink: 0;
 
   font-size: 13px;
@@ -311,11 +276,27 @@ main.wrap {
 
 
 /* ========================================
+   Error / Loading
+======================================== */
+
+.status-message {
+  padding: 24px 0;
+
+  color: #57606a;
+
+  font-size: 15px;
+}
+
+.status-error {
+  color: #cf222e;
+}
+
+
+/* ========================================
    Detail Navigation
 ======================================== */
 
 .detail-nav {
-
   display: grid;
 
   grid-template-columns:
@@ -338,7 +319,6 @@ main.wrap {
 }
 
 .detail-nav-position {
-
   justify-self: center;
 
   font-size: 14px;
@@ -351,7 +331,6 @@ main.wrap {
 }
 
 .detail-nav-actions {
-
   justify-self: end;
 
   display: flex;
@@ -366,7 +345,6 @@ main.wrap {
 }
 
 .detail-nav .disabled {
-
   color: #afb8c1;
 
   pointer-events: none;
@@ -382,7 +360,6 @@ main.wrap {
 ======================================== */
 
 #content {
-
   background: rgba(255, 255, 255, 0.72);
 
   border-radius: 12px;
@@ -391,7 +368,6 @@ main.wrap {
 }
 
 #content h1 {
-
   border-bottom:
     1px solid #d0d7de;
 
@@ -399,7 +375,6 @@ main.wrap {
 }
 
 #content img {
-
   max-width: 100%;
 
   height: auto;
@@ -408,7 +383,6 @@ main.wrap {
 }
 
 pre {
-
   background: #f6f8fa;
 
   padding: 16px;
@@ -419,7 +393,6 @@ pre {
 }
 
 code {
-
   background: #f6f8fa;
 
   padding: 2px 4px;
@@ -446,16 +419,13 @@ code {
     max-width: 100%;
   }
 
-
   .library-section {
-
     padding:
       42px 0 64px;
 
     background-size:
       16px 16px;
   }
-
 
   .item {
     align-items: flex-start;
@@ -467,16 +437,12 @@ code {
     font-size: 12px;
   }
 
-
   .detail-nav {
-
     grid-template-columns:
       1fr auto;
 
     grid-template-areas:
-
       "back position"
-
       "actions actions";
 
     row-gap: 16px;
@@ -487,19 +453,16 @@ code {
   }
 
   .detail-nav-position {
-
     grid-area: position;
 
     justify-self: end;
   }
 
   .detail-nav-actions {
-
     grid-area: actions;
 
     justify-self: end;
   }
-
 
   #content {
     padding:
@@ -566,7 +529,6 @@ code {
 
       <div class="cta">
 
-
         <a
           href="#/"
           id="explore-button"
@@ -576,7 +538,6 @@ code {
           Explore Motion Library ↓
 
         </a>
-
 
       </div>
 
@@ -639,12 +600,91 @@ const BRANCH =
   'main';
 
 
+/* ========================================
+   Cache Config
+======================================== */
+
+const MECHANISM_CACHE_KEY =
+  '100-mechanisms-folders';
+
+const UPDATED_CACHE_KEY =
+  '100-mechanisms-updated';
+
+let mechanismCache =
+  null;
+
+
 
 /* ========================================
    Mechanism Folder
 ======================================== */
 
 async function fetchMechanisms() {
+
+
+  /*
+     1.
+     현재 페이지에서 이미 불러왔다면
+     메모리 캐시 사용
+  */
+
+  if (mechanismCache) {
+
+    return mechanismCache;
+
+  }
+
+
+  /*
+     2.
+     같은 탭에서 이미 불러온 적 있다면
+     sessionStorage 사용
+  */
+
+  const saved =
+    sessionStorage.getItem(
+      MECHANISM_CACHE_KEY
+    );
+
+
+  if (saved) {
+
+    try {
+
+      mechanismCache =
+        JSON.parse(saved);
+
+
+      if (
+        Array.isArray(mechanismCache) &&
+        mechanismCache.length > 0
+      ) {
+
+        return mechanismCache;
+
+      }
+
+    } catch (error) {
+
+      console.warn(
+        'Mechanism cache parse error:',
+        error
+      );
+
+
+      sessionStorage.removeItem(
+        MECHANISM_CACHE_KEY
+      );
+
+    }
+
+  }
+
+
+  /*
+     3.
+     캐시가 없다면 GitHub API 호출
+  */
 
   const url =
 
@@ -654,16 +694,30 @@ async function fetchMechanisms() {
 
     REPO +
 
-    '/contents/mechanisms';
+    '/contents/mechanisms?ref=' +
+
+    encodeURIComponent(BRANCH);
 
 
   const res =
     await fetch(url);
 
 
+  /*
+     기존에는 여기서 []를 반환했기 때문에
+     API 오류까지 "메커니즘 없음"으로 판단했음.
+
+     이제 실제 오류를 발생시킨다.
+  */
+
   if (!res.ok) {
 
-    return [];
+    throw new Error(
+      'GitHub API error: ' +
+      res.status +
+      ' ' +
+      res.statusText
+    );
 
   }
 
@@ -672,21 +726,50 @@ async function fetchMechanisms() {
     await res.json();
 
 
-  return data
+  if (!Array.isArray(data)) {
 
-    .filter(function(d) {
+    throw new Error(
+      'GitHub에서 올바른 폴더 목록을 받지 못했습니다.'
+    );
 
-      return d.type === 'dir';
+  }
 
-    })
 
-    .sort(function(a, b) {
+  mechanismCache =
 
-      return a.name.localeCompare(
-        b.name
-      );
+    data
 
-    });
+      .filter(function(d) {
+
+        return d.type === 'dir';
+
+      })
+
+      .sort(function(a, b) {
+
+        return a.name.localeCompare(
+          b.name
+        );
+
+      });
+
+
+  /*
+     세션 캐시에 저장
+  */
+
+  sessionStorage.setItem(
+
+    MECHANISM_CACHE_KEY,
+
+    JSON.stringify(
+      mechanismCache
+    )
+
+  );
+
+
+  return mechanismCache;
 
 }
 
@@ -700,6 +783,7 @@ async function fetchReadme(
   dirName
 ) {
 
+
   const url =
 
     'https://raw.githubusercontent.com/' +
@@ -712,7 +796,7 @@ async function fetchReadme(
 
     '/mechanisms/' +
 
-    dirName +
+    encodeURIComponent(dirName) +
 
     '/README.md';
 
@@ -723,12 +807,65 @@ async function fetchReadme(
 
   if (!res.ok) {
 
-    return '# Not found';
+    throw new Error(
+      'README를 불러오지 못했습니다.'
+    );
 
   }
 
 
   return await res.text();
+
+}
+
+
+
+/* ========================================
+   Updated Date Cache
+======================================== */
+
+function getUpdatedCache() {
+
+
+  const saved =
+    sessionStorage.getItem(
+      UPDATED_CACHE_KEY
+    );
+
+
+  if (!saved) {
+
+    return {};
+
+  }
+
+
+  try {
+
+    return JSON.parse(saved);
+
+  } catch (error) {
+
+    return {};
+
+  }
+
+}
+
+
+
+function saveUpdatedCache(
+  cache
+) {
+
+
+  sessionStorage.setItem(
+
+    UPDATED_CACHE_KEY,
+
+    JSON.stringify(cache)
+
+  );
 
 }
 
@@ -741,6 +878,28 @@ async function fetchReadme(
 async function fetchLastUpdated(
   dirName
 ) {
+
+
+  /*
+     이미 날짜를 불러왔다면
+     다시 GitHub API 호출하지 않음
+  */
+
+  const cache =
+    getUpdatedCache();
+
+
+  if (
+    Object.prototype.hasOwnProperty.call(
+      cache,
+      dirName
+    )
+  ) {
+
+    return cache[dirName];
+
+  }
+
 
   const path =
 
@@ -774,7 +933,20 @@ async function fetchLastUpdated(
       await fetch(url);
 
 
+    /*
+       날짜 조회 실패는
+       메커니즘 전체 오류로 처리하지 않음.
+
+       날짜만 "-" 처리.
+    */
+
     if (!res.ok) {
+
+      console.warn(
+        'Last updated API error:',
+        res.status
+      );
+
 
       return null;
 
@@ -785,23 +957,44 @@ async function fetchLastUpdated(
       await res.json();
 
 
-    if (!commits.length) {
+    if (
+      !Array.isArray(commits) ||
+      commits.length === 0
+    ) {
 
       return null;
 
     }
 
 
-    return commits[0]
-      .commit
-      .committer
-      .date;
+    const date =
+
+      commits[0]
+        .commit
+        .committer
+        .date;
+
+
+    /*
+       날짜 캐싱
+    */
+
+    cache[dirName] =
+      date;
+
+
+    saveUpdatedCache(
+      cache
+    );
+
+
+    return date;
 
 
   } catch (error) {
 
 
-    console.error(
+    console.warn(
       'Last updated fetch error:',
       error
     );
@@ -933,23 +1126,62 @@ async function renderHome(
 
     '<h2 ' +
 
-    'class="section-title" ' +
+      'class="section-title" ' +
 
-    'id="list-section">' +
+      'id="list-section">' +
 
-    'Motion Library' +
+      'Motion Library' +
 
     '</h2>' +
 
-    '<div id="list">' +
+    '<div ' +
 
-    '불러오는 중...' +
+      'id="list" ' +
+
+      'class="status-message">' +
+
+      '불러오는 중...' +
 
     '</div>';
 
 
-  const dirs =
-    await fetchMechanisms();
+
+  let dirs;
+
+
+  try {
+
+    dirs =
+      await fetchMechanisms();
+
+  } catch (error) {
+
+
+    console.error(
+      error
+    );
+
+
+    app.innerHTML =
+
+      '<h2 class="section-title">' +
+
+        'Motion Library' +
+
+      '</h2>' +
+
+      '<div class="status-message status-error">' +
+
+        '메커니즘 목록을 불러오지 못했습니다. ' +
+
+        '잠시 후 다시 시도해주세요.' +
+
+      '</div>';
+
+
+    return;
+
+  }
 
 
   const list =
@@ -963,11 +1195,7 @@ async function renderHome(
 
     list.innerHTML =
 
-      '<p>' +
-
-      '아직 등록된 항목이 없습니다.' +
-
-      '</p>';
+      '아직 등록된 항목이 없습니다.';
 
 
     return;
@@ -975,77 +1203,127 @@ async function renderHome(
   }
 
 
-  const items =
+  /*
+     먼저 목록을 즉시 표시한다.
 
-    await Promise.all(
+     수정일 때문에 목록 렌더링 전체가
+     늦어지지 않도록 한다.
+  */
 
-
-      dirs.map(
-
-
-        async function(d) {
-
-
-          const updatedAt =
-
-            await fetchLastUpdated(
-              d.name
-            );
-
-
-          return (
-
-            '<div class="item">' +
-
-
-              '<a ' +
-
-                'class="item-link" ' +
-
-                'href="#/mechanisms/' +
-
-                d.name +
-
-              '">' +
-
-
-                formatTitle(
-                  d.name
-                ) +
-
-
-              '</a>' +
-
-
-              '<span class="item-date">' +
-
-                'Updated ' +
-
-                formatDate(
-                  updatedAt
-                ) +
-
-              '</span>' +
-
-
-            '</div>'
-
-          );
-
-        }
-
-      )
-
-    );
+  list.classList.remove(
+    'status-message'
+  );
 
 
   list.innerHTML =
-    items.join('');
+
+    dirs.map(
+
+      function(d) {
+
+
+        return (
+
+          '<div class="item">' +
+
+
+            '<a ' +
+
+              'class="item-link" ' +
+
+              'href="#/mechanisms/' +
+
+              encodeURIComponent(
+                d.name
+              ) +
+
+            '">' +
+
+              formatTitle(
+                d.name
+              ) +
+
+            '</a>' +
+
+
+            '<span ' +
+
+              'class="item-date" ' +
+
+              'id="date-' +
+
+              encodeURIComponent(
+                d.name
+              ) +
+
+            '">' +
+
+              'Updated ...' +
+
+            '</span>' +
+
+
+          '</div>'
+
+        );
+
+      }
+
+    ).join('');
+
+
+
+  /*
+     수정일은 목록 표시 후
+     별도로 불러온다.
+  */
+
+  dirs.forEach(
+
+    async function(d) {
+
+
+      const updatedAt =
+
+        await fetchLastUpdated(
+          d.name
+        );
+
+
+      const dateElement =
+
+        document.getElementById(
+
+          'date-' +
+
+          encodeURIComponent(
+            d.name
+          )
+
+        );
+
+
+      if (dateElement) {
+
+        dateElement.textContent =
+
+          'Updated ' +
+
+          formatDate(
+            updatedAt
+          );
+
+      }
+
+    }
+
+  );
+
 
 
   /*
      목록으로 돌아온 경우
-     Hero가 아니라 Library 시작점으로 이동
+     Hero가 아니라 Library 위치로 이동
   */
 
   if (scrollToLibrary) {
@@ -1092,13 +1370,12 @@ async function renderDetail(
 
 
   /*
-     상세 → 상세 이동 시
-
-     현재 Library 위치를 저장해서
-     Hero까지 올라가지 않도록 함
+     이전 / 다음 이동 시
+     현재 Library 화면 위치 유지
   */
 
   const library =
+
     document.getElementById(
       'library-section'
     );
@@ -1107,23 +1384,69 @@ async function renderDetail(
   const beforeTop =
 
     library
-      ? library.getBoundingClientRect().top
+
+      ? library
+          .getBoundingClientRect()
+          .top
+
       : null;
 
 
+
   const app =
+
     document.getElementById(
       'app'
     );
 
 
   app.innerHTML =
-    '<div>불러오는 중...</div>';
+
+    '<div class="status-message">' +
+
+      '불러오는 중...' +
+
+    '</div>';
 
 
-  const dirs =
-    await fetchMechanisms();
 
+  let dirs;
+
+
+  try {
+
+    dirs =
+      await fetchMechanisms();
+
+  } catch (error) {
+
+
+    console.error(
+      error
+    );
+
+
+    app.innerHTML =
+
+      '<div class="status-message status-error">' +
+
+        '메커니즘 정보를 불러오지 못했습니다. ' +
+
+        '잠시 후 다시 시도해주세요.' +
+
+      '</div>';
+
+
+    return;
+
+  }
+
+
+
+  /*
+     URL과 GitHub 폴더 이름을
+     정확히 비교
+  */
 
   const currentIndex =
 
@@ -1138,16 +1461,33 @@ async function renderDetail(
     );
 
 
+
   if (currentIndex === -1) {
+
+
+    console.error(
+      'Mechanism not found:',
+      dirName
+    );
+
+
+    console.log(
+      'Available mechanisms:',
+      dirs.map(
+        function(d) {
+          return d.name;
+        }
+      )
+    );
 
 
     app.innerHTML =
 
-      '<p>' +
+      '<div class="status-message status-error">' +
 
-      '해당 메커니즘을 찾을 수 없습니다.' +
+        '해당 메커니즘을 찾을 수 없습니다.' +
 
-      '</p>';
+      '</div>';
 
 
     return;
@@ -1155,40 +1495,49 @@ async function renderDetail(
   }
 
 
+
   const prev =
 
     currentIndex > 0
 
-      ? dirs[currentIndex - 1]
+      ? dirs[
+          currentIndex - 1
+        ]
 
       : null;
+
 
 
   const next =
 
-    currentIndex < dirs.length - 1
+    currentIndex <
+    dirs.length - 1
 
-      ? dirs[currentIndex + 1]
+      ? dirs[
+          currentIndex + 1
+        ]
 
       : null;
 
 
 
-  const currentNumber =
+  /*
+     실제 폴더 번호를 사용
 
-    String(
-      currentIndex + 1
-    )
+     예:
+     001-four-bar-linkage
+     → 001 / 100
+  */
 
-    .padStart(
-      3,
-      '0'
-    );
+  const folderNumber =
+
+    dirName
+      .split('-')[0];
 
 
   const positionText =
 
-    currentNumber +
+    folderNumber +
     ' / 100';
 
 
@@ -1201,7 +1550,9 @@ async function renderDetail(
 
           '<a href="#/mechanisms/' +
 
-          prev.name +
+          encodeURIComponent(
+            prev.name
+          ) +
 
           '">' +
 
@@ -1231,7 +1582,9 @@ async function renderDetail(
 
           '<a href="#/mechanisms/' +
 
-          next.name +
+          encodeURIComponent(
+            next.name
+          ) +
 
           '">' +
 
@@ -1261,11 +1614,13 @@ async function renderDetail(
 
       '<div class="detail-nav-left">' +
 
-        '<a href="#/" ' +
+        '<a ' +
 
-        'data-back-to-library="true">' +
+          'href="#/" ' +
 
-        '&larr; 목록으로' +
+          'data-back-to-library="true">' +
+
+          '&larr; 목록으로' +
 
         '</a>' +
 
@@ -1299,33 +1654,76 @@ async function renderDetail(
 
 
 
-  const md =
+  try {
 
-    await fetchReadme(
-      dirName
+
+    const md =
+
+      await fetchReadme(
+        dirName
+      );
+
+
+    const content =
+
+      document.getElementById(
+        'content'
+      );
+
+
+    if (content) {
+
+      content.innerHTML =
+
+        marked.parse(
+          md
+        );
+
+    }
+
+
+  } catch (error) {
+
+
+    console.error(
+      error
     );
 
 
-  document
+    const content =
 
-    .getElementById(
-      'content'
-    )
+      document.getElementById(
+        'content'
+      );
 
-    .innerHTML =
 
-      marked.parse(md);
+    if (content) {
+
+      content.innerHTML =
+
+        '<div class="status-message status-error">' +
+
+          'README를 불러오지 못했습니다.' +
+
+        '</div>';
+
+    }
+
+  }
 
 
 
   /*
-     이전 / 다음 클릭 시
+     상세 → 상세 이동 시
 
-     Hero 최상단으로 이동하지 않고
-     Motion Library 영역을 유지
+     Hero 상단으로 올라가지 않고
+     기존 Library 위치 유지
   */
 
-  if (beforeTop !== null) {
+  if (
+    beforeTop !== null &&
+    library
+  ) {
 
 
     requestAnimationFrame(
@@ -1387,12 +1785,26 @@ function router() {
   if (match) {
 
 
+    let dirName;
+
+
+    try {
+
+      dirName =
+        decodeURIComponent(
+          match[1]
+        );
+
+    } catch (error) {
+
+      dirName =
+        match[1];
+
+    }
+
+
     renderDetail(
-
-      decodeURIComponent(
-        match[1]
-      )
-
+      dirName
     );
 
 
@@ -1414,7 +1826,7 @@ function router() {
 
 
 /* ========================================
-   Motion Library Button
+   Explore Motion Library
 ======================================== */
 
 document
