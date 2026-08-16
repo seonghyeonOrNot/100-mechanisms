@@ -3,116 +3,666 @@
 <head>
 <meta charset="UTF-8">
 <title>100 Mechanisms</title>
+
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
 <style>
-  * { box-sizing: border-box; }
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; margin: 0; padding: 0; color: #24292f; line-height: 1.6; background: #ffffff; }
-  a { color: #0969da; text-decoration: none; }
-  a:hover { text-decoration: underline; }
-  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
-  .hero { padding: 56px 0 40px; border-bottom: 1px solid #eaeef2; margin-bottom: 40px; }
-  .hero-inner { display: flex; align-items: center; justify-content: space-between; gap: 48px; flex-wrap: wrap; }
-  .hero-text { flex: 1 1 380px; min-width: 280px; }
-  .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 20px; margin-bottom: 44px; color: #0d1117; }
-  .logo-icon { font-size: 22px; }
-  .headline { font-size: 52px; font-weight: 800; line-height: 1.15; margin: 0; color: #0d1117; }
-  .headline .accent { color: #0969da; }
-  .hero-divider { width: 40px; height: 3px; background: #24292f; border: none; margin: 24px 0; }
-  .hero-desc { font-size: 16px; color: #57606a; margin: 0 0 28px; }
-  .cta { display: flex; gap: 12px; flex-wrap: wrap; }
-  .btn { display: inline-block; padding: 12px 22px; border-radius: 8px; font-weight: 600; font-size: 15px; }
-  .btn-primary { background: #0d1117; color: #ffffff; }
-  .btn-primary:hover { background: #24292f; text-decoration: none; }
-  .btn-outline { border: 1px solid #d0d7de; color: #0d1117; }
-  .btn-outline:hover { background: #f6f8fa; text-decoration: none; }
-  .hero-image { flex: 1 1 320px; min-width: 260px; text-align: center; }
-  .hero-image img { max-width: 130%; height: auto; }
-  main.wrap { padding-bottom: 60px; }
-  .section-title { font-size: 22px; font-weight: 700; margin: 0 0 16px; color: #0d1117; }
-  .item { padding: 12px 0; border-bottom: 1px solid #d0d7de; }
-  #back { display: inline-block; margin-bottom: 20px; }
-  #content h1 { border-bottom: 1px solid #d0d7de; padding-bottom: 10px; }
-  #content img { max-width: 100%; }
-  pre { background: #f6f8fa; padding: 16px; overflow: auto; border-radius: 6px; }
-  code { background: #f6f8fa; padding: 2px 4px; border-radius: 4px; }
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #24292f;
+    line-height: 1.6;
+    background: #ffffff;
+  }
+
+  a {
+    color: #0969da;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  .wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .hero {
+    padding: 56px 0 40px;
+    border-bottom: 1px solid #eaeef2;
+    margin-bottom: 40px;
+  }
+
+  .hero-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+
+  .hero-text {
+    flex: 1 1 380px;
+    min-width: 280px;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 20px;
+    margin-bottom: 44px;
+    color: #0d1117;
+  }
+
+  .logo-icon {
+    font-size: 22px;
+  }
+
+  .headline {
+    font-size: 52px;
+    font-weight: 800;
+    line-height: 1.15;
+    margin: 0;
+    color: #0d1117;
+  }
+
+  .headline .accent {
+    color: #0969da;
+  }
+
+  .hero-divider {
+    width: 40px;
+    height: 3px;
+    background: #24292f;
+    border: none;
+    margin: 24px 0;
+  }
+
+  .hero-desc {
+    font-size: 16px;
+    color: #57606a;
+    margin: 0 0 28px;
+  }
+
+  .cta {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 12px 22px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 15px;
+  }
+
+  .btn-primary {
+    background: #0d1117;
+    color: #ffffff;
+  }
+
+  .btn-primary:hover {
+    background: #24292f;
+    text-decoration: none;
+  }
+
+  .btn-outline {
+    border: 1px solid #d0d7de;
+    color: #0d1117;
+  }
+
+  .btn-outline:hover {
+    background: #f6f8fa;
+    text-decoration: none;
+  }
+
+  .hero-image {
+    flex: 1 1 320px;
+    min-width: 260px;
+    text-align: center;
+  }
+
+  .hero-image img {
+    max-width: 130%;
+    height: auto;
+  }
+
+  .about {
+    margin-bottom: 48px;
+  }
+
+  main.wrap {
+    padding-bottom: 60px;
+  }
+
+  .section-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin: 0 0 16px;
+    color: #0d1117;
+  }
+
+  /* 메커니즘 리스트 */
+  .item {
+    padding: 16px 0;
+    border-bottom: 1px solid #d0d7de;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .item-link {
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .item-date {
+    flex-shrink: 0;
+    font-size: 13px;
+    color: #8c959f;
+    white-space: nowrap;
+  }
+
+  #back {
+    display: inline-block;
+    margin-bottom: 20px;
+  }
+
+  #content h1 {
+    border-bottom: 1px solid #d0d7de;
+    padding-bottom: 10px;
+  }
+
+  #content img {
+    max-width: 100%;
+  }
+
+  pre {
+    background: #f6f8fa;
+    padding: 16px;
+    overflow: auto;
+    border-radius: 6px;
+  }
+
+  code {
+    background: #f6f8fa;
+    padding: 2px 4px;
+    border-radius: 4px;
+  }
+
   @media (max-width: 700px) {
-    .headline { font-size: 34px; }
-    .hero-inner { flex-direction: column; }
+    .headline {
+      font-size: 34px;
+    }
+
+    .hero-inner {
+      flex-direction: column;
+    }
+
+    .hero-image img {
+      max-width: 100%;
+    }
+
+    .item {
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .item-date {
+      font-size: 12px;
+    }
   }
 </style>
 </head>
+
 <body>
+
 <section class="hero">
   <div class="wrap hero-inner">
+
     <div class="hero-text">
-      <div class="logo"><span class="logo-icon">⚙️</span> 100 Mechanisms</div>
-      <h1 class="headline">Understand Motion.<br>Design Systems.<br><span class="accent">Build Robots.</span></h1>
+
+      <div class="logo">
+        <span class="logo-icon">⚙️</span>
+        100 Mechanisms
+      </div>
+
+      <h1 class="headline">
+        Understand Motion.<br>
+        Design Systems.<br>
+        <span class="accent">Build Robots.</span>
+      </h1>
+
       <hr class="hero-divider">
-      <p class="hero-desc">기계 메커니즘을 분석하고 설계하며 기록합니다. 움직임의 원리를 이해하고 실제 로봇 시스템으로 연결하는 오픈 프로젝트입니다.</p>
+
+      <p class="hero-desc">
+        기계 메커니즘을 분석하고 설계하며 기록합니다.
+        움직임의 원리를 이해하고 실제 로봇 시스템으로 연결하는 오픈 프로젝트입니다.
+      </p>
+
       <div class="cta">
-        <a href="#/" class="btn btn-primary" onclick="var t=document.getElementById('list-section'); if(t){ t.scrollIntoView({behavior:'smooth'}); }">Explore Motion Library &darr;</a>
-        <a href="https://github.com/seonghyeonOrNot/100-mechanisms" target="_blank" rel="noopener" class="btn btn-outline">View on GitHub</a>
+
+        <a
+          href="#/"
+          class="btn btn-primary"
+          onclick="
+            var t = document.getElementById('list-section');
+            if (t) {
+              t.scrollIntoView({ behavior: 'smooth' });
+            }
+          "
+        >
+          Explore Motion Library &darr;
+        </a>
+
+        <a
+          href="https://github.com/seonghyeonOrNot/100-mechanisms"
+          target="_blank"
+          rel="noopener"
+          class="btn btn-outline"
+        >
+          View on GitHub
+        </a>
+
       </div>
     </div>
+
     <div class="hero-image">
-      <img src="hamster-hero3.png" alt="100 Mechanisms mascot">
+      <img
+        src="hamster-hero3.png"
+        alt="100 Mechanisms mascot"
+      >
     </div>
+
   </div>
 </section>
- <section class="wrap about">
-  <h2 class="section-title">프로젝트 소개</h2>
-  <p>100 Mechanisms는 움직임을 이해하고, 설계하고, 기록하는 오픈 프로젝트입니다.</p>
- <p>각 메커니즘의 운동 원리, 자유도(DOF), 전달 구조, 설계 변수, 장단점, 그리고 실제 로봇 적용 사례를 체계적으로 분석합니다.</p>
- <p>모든 메커니즘은 CAD 모델링, 동작 시뮬레이션, 프로토타입 제작, 센서 및 제어 시스템 연결까지 확장하여 검증하고 기록합니다.</p>
- <p>100개의 메커니즘을 통해 움직임을 이해하고, 이를 로봇 시스템과 Physical AI로 연결하는 지식 베이스를 만드는 것이 이 프로젝트의 목표입니다.</p>
- </section>
+
+
+<section class="wrap about">
+
+  <h2 class="section-title">
+    프로젝트 소개
+  </h2>
+
+  <p>
+    100 Mechanisms는 움직임을 이해하고, 설계하고, 기록하는 오픈 프로젝트입니다.
+  </p>
+
+  <p>
+    각 메커니즘의 운동 원리, 자유도(DOF), 전달 구조,
+    설계 변수, 장단점, 그리고 실제 로봇 적용 사례를 체계적으로 분석합니다.
+  </p>
+
+  <p>
+    모든 메커니즘은 CAD 모델링, 동작 시뮬레이션,
+    프로토타입 제작, 센서 및 제어 시스템 연결까지 확장하여 검증하고 기록합니다.
+  </p>
+
+  <p>
+    100개의 메커니즘을 통해 움직임을 이해하고,
+    이를 로봇 시스템과 Physical AI로 연결하는 지식 베이스를 만드는 것이
+    이 프로젝트의 목표입니다.
+  </p>
+
+</section>
+
+
 <main class="wrap">
-  <div id="app">Loading...</div>
+  <div id="app">
+    Loading...
+  </div>
 </main>
+
+
 <script>
+
 const OWNER = 'seonghyeonOrNot';
 const REPO = '100-mechanisms';
 const BRANCH = 'main';
+
+
+/* =========================
+   GitHub 메커니즘 폴더 목록
+========================= */
+
 async function fetchMechanisms() {
-  const res = await fetch('https://api.github.com/repos/' + OWNER + '/' + REPO + '/contents/mechanisms');
-  if (!res.ok) return [];
-  const data = await res.json();
-  return data.filter(function(d){ return d.type === 'dir'; }).sort(function(a,b){ return a.name.localeCompare(b.name); });
-}
-async function fetchReadme(dirName) {
-  const url = 'https://raw.githubusercontent.com/' + OWNER + '/' + REPO + '/' + BRANCH + '/mechanisms/' + dirName + '/README.md';
+
+  const url =
+    'https://api.github.com/repos/' +
+    OWNER + '/' +
+    REPO +
+    '/contents/mechanisms';
+
   const res = await fetch(url);
-  if (!res.ok) return '# Not found';
+
+  if (!res.ok) {
+    return [];
+  }
+
+  const data = await res.json();
+
+  return data
+    .filter(function(d) {
+      return d.type === 'dir';
+    })
+    .sort(function(a, b) {
+      return a.name.localeCompare(b.name);
+    });
+
+}
+
+
+/* =========================
+   README 가져오기
+========================= */
+
+async function fetchReadme(dirName) {
+
+  const url =
+    'https://raw.githubusercontent.com/' +
+    OWNER + '/' +
+    REPO + '/' +
+    BRANCH +
+    '/mechanisms/' +
+    dirName +
+    '/README.md';
+
+  const res = await fetch(url);
+
+  if (!res.ok) {
+    return '# Not found';
+  }
+
   return await res.text();
 }
+
+
+/* =========================
+   최신 수정일 가져오기
+========================= */
+
+async function fetchLastUpdated(dirName) {
+
+  const path =
+    'mechanisms/' + dirName;
+
+  const url =
+    'https://api.github.com/repos/' +
+    OWNER + '/' +
+    REPO +
+    '/commits?path=' +
+    encodeURIComponent(path) +
+    '&sha=' +
+    encodeURIComponent(BRANCH) +
+    '&per_page=1';
+
+  try {
+
+    const res = await fetch(url);
+
+    if (!res.ok) {
+      return null;
+    }
+
+    const commits = await res.json();
+
+    if (!commits.length) {
+      return null;
+    }
+
+    return commits[0].commit.committer.date;
+
+  } catch (error) {
+
+    console.error(
+      'Last updated fetch error:',
+      error
+    );
+
+    return null;
+  }
+
+}
+
+
+/* =========================
+   날짜 포맷
+========================= */
+
+function formatDate(dateString) {
+
+  if (!dateString) {
+    return '-';
+  }
+
+  const date =
+    new Date(dateString);
+
+  const formatted =
+    new Intl.DateTimeFormat(
+      'en-CA',
+      {
+        timeZone: 'Asia/Seoul',
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit'
+      }
+    ).format(date);
+
+  return formatted.replaceAll('-', '.');
+
+}
+
+
+/* =========================
+   폴더명 → 타이틀
+========================= */
+
 function formatTitle(dirName) {
-  const parts = dirName.split('-');
-  const num = parts[0];
-  const words = parts.slice(1).join(' ');
-  return num + '. ' + words.replace(/\b\w/g, function(c){ return c.toUpperCase(); });
+
+  const parts =
+    dirName.split('-');
+
+  const num =
+    parts[0];
+
+  const words =
+    parts
+      .slice(1)
+      .join(' ');
+
+  const title =
+    words.replace(
+      /\b\w/g,
+      function(c) {
+        return c.toUpperCase();
+      }
+    );
+
+  return num + '. ' + title;
+
 }
+
+
+/* =========================
+   HOME
+========================= */
+
 async function renderHome() {
-  const app = document.getElementById('app');
-  app.innerHTML = '<h2 class="section-title" id="list-section">전체 목록</h2><div id="list">불러오는 중...</div>';
-  const dirs = await fetchMechanisms();
-  const list = document.getElementById('list');
-  if (dirs.length === 0) { list.innerHTML = '<p>아직 등록된 항목이 없습니다.</p>'; return; }
-  list.innerHTML = dirs.map(function(d){ return '<div class="item"><a href="#/mechanisms/' + d.name + '">' + formatTitle(d.name) + '</a></div>'; }).join('');
+
+  const app =
+    document.getElementById('app');
+
+  app.innerHTML =
+    '<h2 class="section-title" id="list-section">' +
+      '전체 목록' +
+    '</h2>' +
+
+    '<div id="list">' +
+      '불러오는 중...' +
+    '</div>';
+
+  const dirs =
+    await fetchMechanisms();
+
+  const list =
+    document.getElementById('list');
+
+
+  if (dirs.length === 0) {
+
+    list.innerHTML =
+      '<p>아직 등록된 항목이 없습니다.</p>';
+
+    return;
+  }
+
+
+  /*
+    각 메커니즘의 최근 커밋 날짜를 동시에 조회
+  */
+
+  const items =
+    await Promise.all(
+
+      dirs.map(
+        async function(d) {
+
+          const updatedAt =
+            await fetchLastUpdated(d.name);
+
+          return (
+            '<div class="item">' +
+
+              '<a ' +
+                'class="item-link" ' +
+                'href="#/mechanisms/' +
+                d.name +
+              '">' +
+
+                formatTitle(d.name) +
+
+              '</a>' +
+
+              '<span class="item-date">' +
+                'Updated ' +
+                formatDate(updatedAt) +
+              '</span>' +
+
+            '</div>'
+          );
+
+        }
+      )
+
+    );
+
+
+  list.innerHTML =
+    items.join('');
+
 }
+
+
+/* =========================
+   DETAIL
+========================= */
+
 async function renderDetail(dirName) {
-  const app = document.getElementById('app');
-  app.innerHTML = '<div id="back"><a href="#/">&larr; 목록으로</a></div><div id="content">불러오는 중...</div>';
-  const md = await fetchReadme(dirName);
-  document.getElementById('content').innerHTML = marked.parse(md);
+
+  const app =
+    document.getElementById('app');
+
+  app.innerHTML =
+    '<div id="back">' +
+
+      '<a href="#/">' +
+        '&larr; 목록으로' +
+      '</a>' +
+
+    '</div>' +
+
+    '<div id="content">' +
+      '불러오는 중...' +
+    '</div>';
+
+
+  const md =
+    await fetchReadme(dirName);
+
+
+  document
+    .getElementById('content')
+    .innerHTML =
+      marked.parse(md);
+
 }
+
+
+/* =========================
+   ROUTER
+========================= */
+
 function router() {
-  const hash = window.location.hash;
-  const match = hash.match(/^#\/mechanisms\/(.+)$/);
-  if (match) { renderDetail(match[1]); } else { renderHome(); }
+
+  const hash =
+    window.location.hash;
+
+  const match =
+    hash.match(
+      /^#\/mechanisms\/(.+)$/
+    );
+
+
+  if (match) {
+
+    renderDetail(
+      match[1]
+    );
+
+  } else {
+
+    renderHome();
+
+  }
+
 }
-window.addEventListener('hashchange', router);
-window.addEventListener('DOMContentLoaded', router);
-router();
+
+
+/* =========================
+   EVENTS
+========================= */
+
+window.addEventListener(
+  'hashchange',
+  router
+);
+
+
+window.addEventListener(
+  'DOMContentLoaded',
+  function() {
+
+    router();
+
+  }
+);
+
 </script>
+
 </body>
 </html>
