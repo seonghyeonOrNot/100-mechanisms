@@ -247,66 +247,12 @@ a:hover {
    아래 SVG가 CSS 내부에 포함되어 있음.
 */
 
-.library-section::before {
-
-  content: "";
-
-  position: absolute;
-
-  inset: 0;
-
-  pointer-events: none;
-
-  opacity: 0.038;
-
-  background-image:
-
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300' viewBox='0 0 300 300'%3E%3Cg fill='none' stroke='%230d1117' stroke-width='2'%3E%3Ccircle cx='150' cy='150' r='75'/%3E%3Ccircle cx='150' cy='150' r='30'/%3E%3Cpath d='M150 50v35M150 215v35M50 150h35M215 150h35M79 79l25 25M196 196l25 25M79 221l25-25M196 104l25-25'/%3E%3Cpath d='M150 75L165 45L180 80M225 150L255 165L220 180M150 225L135 255L120 220M75 150L45 135L80 120'/%3E%3C/g%3E%3C/svg%3E"),
-
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'%3E%3Cg fill='none' stroke='%230d1117' stroke-width='2'%3E%3Ccircle cx='110' cy='110' r='55'/%3E%3Ccircle cx='110' cy='110' r='22'/%3E%3Cpath d='M110 36v30M110 154v30M36 110h30M154 110h30M58 58l22 22M140 140l22 22M58 162l22-22M140 80l22-22'/%3E%3C/g%3E%3C/svg%3E");
-
-  background-repeat:
-    repeat,
-    repeat;
-
-  background-size:
-    520px 520px,
-    420px 420px;
-
-  background-position:
-    -120px 20px,
-    260px 180px;
-}
 
 
 /*
    가장자리의 조금 더 큰 기어
 */
 
-.library-section::after {
-
-  content: "";
-
-  position: absolute;
-
-  right: -120px;
-  bottom: -100px;
-
-  width: 360px;
-  height: 360px;
-
-  opacity: 0.035;
-
-  pointer-events: none;
-
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-
-  background-image:
-
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Cg fill='none' stroke='%230d1117' stroke-width='2'%3E%3Ccircle cx='150' cy='150' r='95'/%3E%3Ccircle cx='150' cy='150' r='38'/%3E%3Cpath d='M150 28v37M150 235v37M28 150h37M235 150h37M64 64l27 27M209 209l27 27M64 236l27-27M209 91l27-27'/%3E%3Cpath d='M150 55L165 20L180 58M245 150L280 165L242 180M150 245L135 280L120 242M55 150L20 135L58 120'/%3E%3C/g%3E%3C/svg%3E");
-}
 
 
 /* ========================================
