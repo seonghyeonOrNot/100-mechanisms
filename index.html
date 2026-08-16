@@ -64,9 +64,7 @@ a:hover {
 
 .hero {
   background: #ffffff;
-
   padding: 56px 0 40px;
-
   border-bottom: 1px solid #eaeef2;
 }
 
@@ -76,7 +74,6 @@ a:hover {
   justify-content: space-between;
 
   gap: 48px;
-
   flex-wrap: wrap;
 }
 
@@ -144,9 +141,7 @@ a:hover {
 
 .cta {
   display: flex;
-
   gap: 12px;
-
   flex-wrap: wrap;
 }
 
@@ -168,7 +163,6 @@ a:hover {
 
 .btn-primary:hover {
   background: #24292f;
-
   text-decoration: none;
 }
 
@@ -179,15 +173,12 @@ a:hover {
 
 .hero-image {
   flex: 1 1 320px;
-
   min-width: 260px;
-
   text-align: center;
 }
 
 .hero-image img {
   max-width: 130%;
-
   height: auto;
 }
 
@@ -210,7 +201,6 @@ a:hover {
   border-top: 1px solid #eaeef2;
 
   /* 아주 미세한 점묘 패턴 */
-
   background-image:
     radial-gradient(
       circle,
@@ -247,43 +237,23 @@ main.wrap {
 .item {
   padding: 18px 0;
 
-  border-bottom: 1px solid rgba(208, 215, 222, 0.9);
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: space-between;
-
-  gap: 24px;
+  border-bottom:
+    1px solid rgba(208, 215, 222, 0.9);
 }
 
 .item-link {
   font-size: 16px;
-
   font-weight: 600;
-}
-
-.item-date {
-  flex-shrink: 0;
-
-  font-size: 13px;
-
-  color: #8c959f;
-
-  white-space: nowrap;
 }
 
 
 /* ========================================
-   Error / Loading
+   Status
 ======================================== */
 
 .status-message {
   padding: 24px 0;
-
   color: #57606a;
-
   font-size: 15px;
 }
 
@@ -322,7 +292,6 @@ main.wrap {
   justify-self: center;
 
   font-size: 14px;
-
   font-weight: 600;
 
   color: #57606a;
@@ -334,7 +303,6 @@ main.wrap {
   justify-self: end;
 
   display: flex;
-
   align-items: center;
 
   gap: 22px;
@@ -348,7 +316,6 @@ main.wrap {
   color: #afb8c1;
 
   pointer-events: none;
-
   cursor: default;
 
   font-size: 15px;
@@ -368,15 +335,12 @@ main.wrap {
 }
 
 #content h1 {
-  border-bottom:
-    1px solid #d0d7de;
-
+  border-bottom: 1px solid #d0d7de;
   padding-bottom: 10px;
 }
 
 #content img {
   max-width: 100%;
-
   height: auto;
 
   border-radius: 8px;
@@ -427,16 +391,6 @@ code {
       16px 16px;
   }
 
-  .item {
-    align-items: flex-start;
-
-    gap: 12px;
-  }
-
-  .item-date {
-    font-size: 12px;
-  }
-
   .detail-nav {
     grid-template-columns:
       1fr auto;
@@ -454,13 +408,11 @@ code {
 
   .detail-nav-position {
     grid-area: position;
-
     justify-self: end;
   }
 
   .detail-nav-actions {
     grid-area: actions;
-
     justify-self: end;
   }
 
@@ -468,7 +420,6 @@ code {
     padding:
       8px 12px 28px;
   }
-
 }
 
 </style>
@@ -487,45 +438,28 @@ code {
 
   <div class="wrap hero-inner">
 
-
     <div class="hero-text">
 
-
       <div class="logo">
-
-        <span class="logo-icon">
-          ⚙️
-        </span>
-
+        <span class="logo-icon">⚙️</span>
         100 Mechanisms
-
       </div>
 
-
       <h1 class="headline">
-
         Understand Motion.<br>
-
         Design Systems.<br>
-
         <span class="accent">
           Build Robots.
         </span>
-
       </h1>
-
 
       <hr class="hero-divider">
 
-
       <p class="hero-desc">
-
         기계 메커니즘을 분석하고 설계하며 기록합니다.
         움직임의 원리를 이해하고 실제 로봇 시스템으로 연결하는
         오픈 프로젝트입니다.
-
       </p>
-
 
       <div class="cta">
 
@@ -534,9 +468,7 @@ code {
           id="explore-button"
           class="btn btn-primary"
         >
-
           Explore Motion Library ↓
-
         </a>
 
       </div>
@@ -552,7 +484,6 @@ code {
       >
 
     </div>
-
 
   </div>
 
@@ -572,9 +503,7 @@ code {
   <main class="wrap">
 
     <div id="app">
-
       Loading...
-
     </div>
 
   </main>
@@ -601,18 +530,11 @@ const BRANCH =
 
 
 /* ========================================
-   Cache Config
+   Cache
 ======================================== */
-
-const MECHANISM_CACHE_KEY =
-  '100-mechanisms-folders';
-
-const UPDATED_CACHE_KEY =
-  '100-mechanisms-updated';
 
 let mechanismCache =
   null;
-
 
 
 /* ========================================
@@ -621,70 +543,15 @@ let mechanismCache =
 
 async function fetchMechanisms() {
 
-
   /*
-     1.
-     현재 페이지에서 이미 불러왔다면
-     메모리 캐시 사용
+     이미 한 번 받아왔다면
+     다시 GitHub API 호출하지 않음
   */
 
   if (mechanismCache) {
-
     return mechanismCache;
-
   }
 
-
-  /*
-     2.
-     같은 탭에서 이미 불러온 적 있다면
-     sessionStorage 사용
-  */
-
-  const saved =
-    sessionStorage.getItem(
-      MECHANISM_CACHE_KEY
-    );
-
-
-  if (saved) {
-
-    try {
-
-      mechanismCache =
-        JSON.parse(saved);
-
-
-      if (
-        Array.isArray(mechanismCache) &&
-        mechanismCache.length > 0
-      ) {
-
-        return mechanismCache;
-
-      }
-
-    } catch (error) {
-
-      console.warn(
-        'Mechanism cache parse error:',
-        error
-      );
-
-
-      sessionStorage.removeItem(
-        MECHANISM_CACHE_KEY
-      );
-
-    }
-
-  }
-
-
-  /*
-     3.
-     캐시가 없다면 GitHub API 호출
-  */
 
   const url =
 
@@ -702,13 +569,6 @@ async function fetchMechanisms() {
   const res =
     await fetch(url);
 
-
-  /*
-     기존에는 여기서 []를 반환했기 때문에
-     API 오류까지 "메커니즘 없음"으로 판단했음.
-
-     이제 실제 오류를 발생시킨다.
-  */
 
   if (!res.ok) {
 
@@ -729,7 +589,7 @@ async function fetchMechanisms() {
   if (!Array.isArray(data)) {
 
     throw new Error(
-      'GitHub에서 올바른 폴더 목록을 받지 못했습니다.'
+      'GitHub에서 올바른 목록을 받지 못했습니다.'
     );
 
   }
@@ -740,39 +600,17 @@ async function fetchMechanisms() {
     data
 
       .filter(function(d) {
-
         return d.type === 'dir';
-
       })
 
       .sort(function(a, b) {
-
-        return a.name.localeCompare(
-          b.name
-        );
-
+        return a.name.localeCompare(b.name);
       });
-
-
-  /*
-     세션 캐시에 저장
-  */
-
-  sessionStorage.setItem(
-
-    MECHANISM_CACHE_KEY,
-
-    JSON.stringify(
-      mechanismCache
-    )
-
-  );
 
 
   return mechanismCache;
 
 }
-
 
 
 /* ========================================
@@ -782,7 +620,6 @@ async function fetchMechanisms() {
 async function fetchReadme(
   dirName
 ) {
-
 
   const url =
 
@@ -819,249 +656,6 @@ async function fetchReadme(
 }
 
 
-
-/* ========================================
-   Updated Date Cache
-======================================== */
-
-function getUpdatedCache() {
-
-
-  const saved =
-    sessionStorage.getItem(
-      UPDATED_CACHE_KEY
-    );
-
-
-  if (!saved) {
-
-    return {};
-
-  }
-
-
-  try {
-
-    return JSON.parse(saved);
-
-  } catch (error) {
-
-    return {};
-
-  }
-
-}
-
-
-
-function saveUpdatedCache(
-  cache
-) {
-
-
-  sessionStorage.setItem(
-
-    UPDATED_CACHE_KEY,
-
-    JSON.stringify(cache)
-
-  );
-
-}
-
-
-
-/* ========================================
-   Last Updated
-======================================== */
-
-async function fetchLastUpdated(
-  dirName
-) {
-
-
-  /*
-     이미 날짜를 불러왔다면
-     다시 GitHub API 호출하지 않음
-  */
-
-  const cache =
-    getUpdatedCache();
-
-
-  if (
-    Object.prototype.hasOwnProperty.call(
-      cache,
-      dirName
-    )
-  ) {
-
-    return cache[dirName];
-
-  }
-
-
-  const path =
-
-    'mechanisms/' +
-    dirName;
-
-
-  const url =
-
-    'https://api.github.com/repos/' +
-
-    OWNER + '/' +
-
-    REPO +
-
-    '/commits?path=' +
-
-    encodeURIComponent(path) +
-
-    '&sha=' +
-
-    encodeURIComponent(BRANCH) +
-
-    '&per_page=1';
-
-
-  try {
-
-
-    const res =
-      await fetch(url);
-
-
-    /*
-       날짜 조회 실패는
-       메커니즘 전체 오류로 처리하지 않음.
-
-       날짜만 "-" 처리.
-    */
-
-    if (!res.ok) {
-
-      console.warn(
-        'Last updated API error:',
-        res.status
-      );
-
-
-      return null;
-
-    }
-
-
-    const commits =
-      await res.json();
-
-
-    if (
-      !Array.isArray(commits) ||
-      commits.length === 0
-    ) {
-
-      return null;
-
-    }
-
-
-    const date =
-
-      commits[0]
-        .commit
-        .committer
-        .date;
-
-
-    /*
-       날짜 캐싱
-    */
-
-    cache[dirName] =
-      date;
-
-
-    saveUpdatedCache(
-      cache
-    );
-
-
-    return date;
-
-
-  } catch (error) {
-
-
-    console.warn(
-      'Last updated fetch error:',
-      error
-    );
-
-
-    return null;
-
-  }
-
-}
-
-
-
-/* ========================================
-   Date Format
-======================================== */
-
-function formatDate(
-  dateString
-) {
-
-
-  if (!dateString) {
-
-    return '-';
-
-  }
-
-
-  const date =
-    new Date(dateString);
-
-
-  const formatted =
-
-    new Intl.DateTimeFormat(
-
-      'en-CA',
-
-      {
-
-        timeZone:
-          'Asia/Seoul',
-
-        year:
-          'numeric',
-
-        month:
-          '2-digit',
-
-        day:
-          '2-digit'
-
-      }
-
-    ).format(date);
-
-
-  return formatted.replaceAll(
-    '-',
-    '.'
-  );
-
-}
-
-
-
 /* ========================================
    Folder → Title
 ======================================== */
@@ -1069,7 +663,6 @@ function formatDate(
 function formatTitle(
   dirName
 ) {
-
 
   const parts =
     dirName.split('-');
@@ -1093,9 +686,7 @@ function formatTitle(
       /\b\w/g,
 
       function(c) {
-
         return c.toUpperCase();
-
       }
 
     );
@@ -1106,7 +697,6 @@ function formatTitle(
 }
 
 
-
 /* ========================================
    HOME
 ======================================== */
@@ -1114,7 +704,6 @@ function formatTitle(
 async function renderHome(
   scrollToLibrary = false
 ) {
-
 
   const app =
     document.getElementById(
@@ -1125,9 +714,7 @@ async function renderHome(
   app.innerHTML =
 
     '<h2 ' +
-
       'class="section-title" ' +
-
       'id="list-section">' +
 
       'Motion Library' +
@@ -1135,15 +722,12 @@ async function renderHome(
     '</h2>' +
 
     '<div ' +
-
       'id="list" ' +
-
       'class="status-message">' +
 
       '불러오는 중...' +
 
     '</div>';
-
 
 
   let dirs;
@@ -1156,28 +740,17 @@ async function renderHome(
 
   } catch (error) {
 
-
-    console.error(
-      error
-    );
-
+    console.error(error);
 
     app.innerHTML =
 
       '<h2 class="section-title">' +
-
         'Motion Library' +
-
       '</h2>' +
 
       '<div class="status-message status-error">' +
-
-        '메커니즘 목록을 불러오지 못했습니다. ' +
-
-        '잠시 후 다시 시도해주세요.' +
-
+        '메커니즘 목록을 불러오지 못했습니다. 잠시 후 다시 시도해주세요.' +
       '</div>';
-
 
     return;
 
@@ -1192,23 +765,13 @@ async function renderHome(
 
   if (dirs.length === 0) {
 
-
     list.innerHTML =
-
       '아직 등록된 항목이 없습니다.';
-
 
     return;
 
   }
 
-
-  /*
-     먼저 목록을 즉시 표시한다.
-
-     수정일 때문에 목록 렌더링 전체가
-     늦어지지 않도록 한다.
-  */
 
   list.classList.remove(
     'status-message'
@@ -1221,22 +784,14 @@ async function renderHome(
 
       function(d) {
 
-
         return (
 
           '<div class="item">' +
 
-
             '<a ' +
-
               'class="item-link" ' +
-
               'href="#/mechanisms/' +
-
-              encodeURIComponent(
-                d.name
-              ) +
-
+              encodeURIComponent(d.name) +
             '">' +
 
               formatTitle(
@@ -1244,24 +799,6 @@ async function renderHome(
               ) +
 
             '</a>' +
-
-
-            '<span ' +
-
-              'class="item-date" ' +
-
-              'id="date-' +
-
-              encodeURIComponent(
-                d.name
-              ) +
-
-            '">' +
-
-              'Updated ...' +
-
-            '</span>' +
-
 
           '</div>'
 
@@ -1272,67 +809,16 @@ async function renderHome(
     ).join('');
 
 
-
-  /*
-     수정일은 목록 표시 후
-     별도로 불러온다.
-  */
-
-  dirs.forEach(
-
-    async function(d) {
-
-
-      const updatedAt =
-
-        await fetchLastUpdated(
-          d.name
-        );
-
-
-      const dateElement =
-
-        document.getElementById(
-
-          'date-' +
-
-          encodeURIComponent(
-            d.name
-          )
-
-        );
-
-
-      if (dateElement) {
-
-        dateElement.textContent =
-
-          'Updated ' +
-
-          formatDate(
-            updatedAt
-          );
-
-      }
-
-    }
-
-  );
-
-
-
   /*
      목록으로 돌아온 경우
-     Hero가 아니라 Library 위치로 이동
+     Hero가 아니라 Motion Library 위치로 이동
   */
 
   if (scrollToLibrary) {
 
-
     requestAnimationFrame(
 
       function() {
-
 
         document
 
@@ -1359,7 +845,6 @@ async function renderHome(
 }
 
 
-
 /* ========================================
    DETAIL
 ======================================== */
@@ -1368,18 +853,17 @@ async function renderDetail(
   dirName
 ) {
 
-
-  /*
-     이전 / 다음 이동 시
-     현재 Library 화면 위치 유지
-  */
-
   const library =
 
     document.getElementById(
       'library-section'
     );
 
+
+  /*
+     이전 / 다음 클릭 전
+     현재 Library 위치 기억
+  */
 
   const beforeTop =
 
@@ -1392,9 +876,7 @@ async function renderDetail(
       : null;
 
 
-
   const app =
-
     document.getElementById(
       'app'
     );
@@ -1403,11 +885,8 @@ async function renderDetail(
   app.innerHTML =
 
     '<div class="status-message">' +
-
       '불러오는 중...' +
-
     '</div>';
-
 
 
   let dirs;
@@ -1420,80 +899,46 @@ async function renderDetail(
 
   } catch (error) {
 
-
-    console.error(
-      error
-    );
-
+    console.error(error);
 
     app.innerHTML =
 
       '<div class="status-message status-error">' +
-
-        '메커니즘 정보를 불러오지 못했습니다. ' +
-
-        '잠시 후 다시 시도해주세요.' +
-
+        '메커니즘 정보를 불러오지 못했습니다. 잠시 후 다시 시도해주세요.' +
       '</div>';
-
 
     return;
 
   }
 
-
-
-  /*
-     URL과 GitHub 폴더 이름을
-     정확히 비교
-  */
 
   const currentIndex =
 
     dirs.findIndex(
 
       function(d) {
-
         return d.name === dirName;
-
       }
 
     );
 
 
-
   if (currentIndex === -1) {
-
 
     console.error(
       'Mechanism not found:',
       dirName
     );
 
-
-    console.log(
-      'Available mechanisms:',
-      dirs.map(
-        function(d) {
-          return d.name;
-        }
-      )
-    );
-
-
     app.innerHTML =
 
       '<div class="status-message status-error">' +
-
         '해당 메커니즘을 찾을 수 없습니다.' +
-
       '</div>';
-
 
     return;
 
   }
-
 
 
   const prev =
@@ -1505,7 +950,6 @@ async function renderDetail(
         ]
 
       : null;
-
 
 
   const next =
@@ -1520,11 +964,9 @@ async function renderDetail(
       : null;
 
 
-
   /*
-     실제 폴더 번호를 사용
+     폴더명의 번호 사용
 
-     예:
      001-four-bar-linkage
      → 001 / 100
   */
@@ -1539,7 +981,6 @@ async function renderDetail(
 
     folderNumber +
     ' / 100';
-
 
 
   const prevHtml =
@@ -1573,7 +1014,6 @@ async function renderDetail(
         );
 
 
-
   const nextHtml =
 
     next
@@ -1605,19 +1045,14 @@ async function renderDetail(
         );
 
 
-
   app.innerHTML =
 
-
     '<div class="detail-nav">' +
-
 
       '<div class="detail-nav-left">' +
 
         '<a ' +
-
           'href="#/" ' +
-
           'data-back-to-library="true">' +
 
           '&larr; 목록으로' +
@@ -1642,23 +1077,17 @@ async function renderDetail(
 
       '</div>' +
 
-
     '</div>' +
 
 
     '<div id="content">' +
-
       '불러오는 중...' +
-
     '</div>';
-
 
 
   try {
 
-
     const md =
-
       await fetchReadme(
         dirName
       );
@@ -1681,13 +1110,9 @@ async function renderDetail(
 
     }
 
-
   } catch (error) {
 
-
-    console.error(
-      error
-    );
+    console.error(error);
 
 
     const content =
@@ -1702,9 +1127,7 @@ async function renderDetail(
       content.innerHTML =
 
         '<div class="status-message status-error">' +
-
           'README를 불러오지 못했습니다.' +
-
         '</div>';
 
     }
@@ -1712,12 +1135,10 @@ async function renderDetail(
   }
 
 
-
   /*
-     상세 → 상세 이동 시
-
-     Hero 상단으로 올라가지 않고
-     기존 Library 위치 유지
+     이전 / 다음 클릭 시
+     Hero까지 올라가지 않고
+     현재 Library 위치 유지
   */
 
   if (
@@ -1725,11 +1146,9 @@ async function renderDetail(
     library
   ) {
 
-
     requestAnimationFrame(
 
       function() {
-
 
         const newTop =
 
@@ -1757,7 +1176,6 @@ async function renderDetail(
 }
 
 
-
 /* ========================================
    Router
 ======================================== */
@@ -1767,7 +1185,6 @@ let backToLibrary =
 
 
 function router() {
-
 
   const hash =
     window.location.hash;
@@ -1783,7 +1200,6 @@ function router() {
 
 
   if (match) {
-
 
     let dirName;
 
@@ -1807,9 +1223,7 @@ function router() {
       dirName
     );
 
-
   } else {
-
 
     renderHome(
       backToLibrary
@@ -1822,7 +1236,6 @@ function router() {
   }
 
 }
-
 
 
 /* ========================================
@@ -1841,14 +1254,12 @@ document
 
     function(event) {
 
-
       event.preventDefault();
 
 
       if (
         window.location.hash !== '#/'
       ) {
-
 
         backToLibrary =
           true;
@@ -1857,9 +1268,7 @@ document
         window.location.hash =
           '#/';
 
-
       } else {
-
 
         document
 
@@ -1884,7 +1293,6 @@ document
   );
 
 
-
 /* ========================================
    Back → Library
 ======================================== */
@@ -1895,7 +1303,6 @@ document.addEventListener(
 
   function(event) {
 
-
     const backLink =
 
       event.target.closest(
@@ -1904,9 +1311,7 @@ document.addEventListener(
 
 
     if (!backLink) {
-
       return;
-
     }
 
 
@@ -1916,7 +1321,6 @@ document.addEventListener(
   }
 
 );
-
 
 
 /* ========================================
@@ -1934,13 +1338,10 @@ window.addEventListener(
   'DOMContentLoaded',
 
   function() {
-
     router();
-
   }
 
 );
-
 
 </script>
 
