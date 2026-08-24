@@ -1,5 +1,4 @@
 <aside>
-⚙️
 
 **MQ-001 · Slider-Crank — Mechanical UX 관점 연구 노트**
 
