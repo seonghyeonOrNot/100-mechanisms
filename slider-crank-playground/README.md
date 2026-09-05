@@ -26,3 +26,5 @@ The implementation uses analytic first and second derivatives in `mechanics/slid
 The mechanism panel includes synchronized main, left-side, top, and right-side views. Every view consumes the same solved crank-pin and slider coordinates used by the metrics and charts.
 
 The main view is a product-style WebGL assembly built with Three.js. Drag to orbit, scroll to zoom, or switch between perspective, left, right, and top camera presets.
+
+The engineering layer adds displacement from inner dead center, dead-center state, moving mass, output load, guide friction, joint clearance, inertia force, side thrust, friction force, and estimated crank torque. Mechanical UX presets cover 5 mm popup, 10 mm latch, 20 mm handle, and 30 mm living-motion cases. Force and torque values are idealized comparative estimates; the clearance score is not a vibration prediction.

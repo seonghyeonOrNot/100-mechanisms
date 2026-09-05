@@ -11,6 +11,16 @@ export type SliderCrankState = {
 
 export type MotionSample = SliderCrankState & { angle: number };
 
+export type EngineeringState = {
+  displacement: number;
+  inertiaForce: number;
+  sideThrust: number;
+  frictionForce: number;
+  axialForce: number;
+  crankTorque: number;
+  clearanceRisk: number;
+};
+
 export const degToRad = (degrees: number) => (degrees * Math.PI) / 180;
 export const radToDeg = (radians: number) => (radians * 180) / Math.PI;
 export const rpmToOmega = (rpm: number) => (rpm * 2 * Math.PI) / 60;
@@ -41,4 +51,19 @@ export function normalizedDisplacement(r: number, ratio: number, angle: number) 
   const length = r * ratio;
   const x = solveSliderCrank(r, length, angle, 1).position;
   return (x - (length - r)) / (2 * r);
+}
+
+export function solveEngineeringState(r: number, length: number, angle: number, rpm: number, load: number, movingMass: number, friction: number, clearance: number): EngineeringState {
+  const state = solveSliderCrank(r, length, angle, rpm);
+  const displacement = state.position - (length - r);
+  const inertiaForce = movingMass * state.acceleration / 1000;
+  const axialBeforeFriction = load + inertiaForce;
+  const sideThrust = Math.abs(axialBeforeFriction * Math.tan(state.rodAngle));
+  const frictionForce = friction * sideThrust;
+  const direction = Math.sign(state.velocity) || 1;
+  const axialForce = axialBeforeFriction + direction * frictionForce;
+  const transmissionRate = state.omega === 0 ? 0 : state.velocity / state.omega;
+  const crankTorque = Math.abs(axialForce * transmissionRate / 1000);
+  const clearanceRisk = Math.min(100, clearance * rpm * (1 + Math.abs(state.acceleration) / 5000));
+  return { displacement, inertiaForce, sideThrust, frictionForce, axialForce, crankTorque, clearanceRisk };
 }
